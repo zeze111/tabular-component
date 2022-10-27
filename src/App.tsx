@@ -1,17 +1,18 @@
-import Tab, { TabPane } from "./components/Tab";
+import Tab from "./components/Tab";
 
+// renders the tab component the according to usage
 function App() {
   return (
     <Tab initialActive={2}>
-      <TabPane title="First Pane">
+      <Tab.Pane title="First Pane">
         <div> First Pane Body </div>
-      </TabPane>
-      <TabPane title="Second Pane">
+      </Tab.Pane>
+      <Tab.Pane title="Second Pane">
         <div>Second Pane Body</div>
-      </TabPane>
-      <TabPane title="Third Pane">
+      </Tab.Pane>
+      <Tab.Pane title="Third Pane">
         <div>Third Pane Body</div>
-      </TabPane>
+      </Tab.Pane>
     </Tab>
   );
 }

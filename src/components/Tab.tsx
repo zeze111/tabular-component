@@ -1,9 +1,9 @@
 import { Children, cloneElement, useMemo, useRef, useState } from "react";
 import "../assets/css/tab.css";
-import { TabPaneProps, TabProps } from "../utils/types/tab.type";
+import { TabComponent, TabPaneProps } from "../utils/types/tab.type";
 import TabTitle from "./TabTitle";
 
-const Tab: React.FC<TabProps> = ({
+const Tab: TabComponent = ({
   children,
   styles,
   initialActive,
@@ -12,6 +12,7 @@ const Tab: React.FC<TabProps> = ({
 }) => {
   const tabRef = useRef(initialActive);
 
+  // sets the default value to be used with state value
   const defaultActiveValue =
     useMemo(() => {
       if (initialActive) {
@@ -23,6 +24,7 @@ const Tab: React.FC<TabProps> = ({
 
   const [activeTab, setActiveTab] = useState(defaultActiveValue);
 
+  // return the string value of the current tab title
   const activeTabTitle = useMemo(
     () => children[activeTab].props.title,
     [activeTab, children]
@@ -43,6 +45,7 @@ const Tab: React.FC<TabProps> = ({
         ))}
       </div>
       {Children.map(children, (el) => {
+        // passes a selected prop to each child jsx element of the children prop
         return cloneElement(el, {
           selected: activeTabTitle === el.props.title,
         });
@@ -51,8 +54,10 @@ const Tab: React.FC<TabProps> = ({
   );
 };
 
-export const TabPane: React.FC<TabPaneProps> = ({ children, selected }) => {
+const TabPane: React.FC<TabPaneProps> = ({ children, selected }) => {
   return <div className="tab-pane">{selected ? children : null}</div>;
 };
+
+Tab.Pane = TabPane;
 
 export default Tab;

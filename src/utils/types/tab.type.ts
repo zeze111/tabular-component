@@ -1,3 +1,5 @@
+// a type definition that takes 2 interfaces
+// but returns only one based on the given prop
 type Only<T, U> = {
   [P in keyof T]: T[P];
 } & Omit<
@@ -23,10 +25,12 @@ interface UncontrolledTabProps extends TabInitialProps {
   initialActive: number;
 }
 
-export type TabProps = Either<ControlledTabProps, UncontrolledTabProps>;
+type TabProps = Either<ControlledTabProps, UncontrolledTabProps>;
 
 export type TabPaneProps = {
   title: string;
   selected?: boolean;
   children: React.ReactElement;
 };
+
+export type TabComponent = React.FC<TabProps> & { Pane: React.FC<TabPaneProps> };
