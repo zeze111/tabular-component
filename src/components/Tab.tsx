@@ -1,39 +1,7 @@
 import { Children, cloneElement, useMemo, useRef, useState } from "react";
 import "../assets/css/tab.css";
+import { TabPaneProps, TabProps } from "../utils/types/tab.type";
 import TabTitle from "./TabTitle";
-
-type Only<T, U> = {
-  [P in keyof T]: T[P];
-} & Omit<
-  {
-    [P in keyof U]?: never;
-  },
-  keyof T
->;
-
-type Either<T, U> = Only<T, U> | Only<U, T>;
-
-interface TabInitialProps {
-  children: React.ReactElement<TabPaneProps>[];
-  styles?: string;
-  onActiveChange?: () => {};
-}
-
-interface ControlledTabProps extends TabInitialProps {
-  active: number;
-}
-
-interface UncontrolledTabProps extends TabInitialProps {
-  initialActive: number;
-}
-
-type TabProps = Either<ControlledTabProps, UncontrolledTabProps>;
-
-type TabPaneProps = {
-  title: string;
-  selected?: boolean;
-  children: React.ReactElement;
-};
 
 const Tab: React.FC<TabProps> = ({
   children,
@@ -44,7 +12,16 @@ const Tab: React.FC<TabProps> = ({
 }) => {
   const tabRef = useRef(initialActive);
 
-  const [activeTab, setActiveTab] = useState(active ? active : 0);
+  const defaultActiveValue =
+    useMemo(() => {
+      if (initialActive) {
+        return tabRef.current;
+      } else if (active) {
+        return active;
+      }
+    }, [active, initialActive]) || 0;
+
+  const [activeTab, setActiveTab] = useState(defaultActiveValue);
 
   const activeTabTitle = useMemo(
     () => children[activeTab].props.title,
