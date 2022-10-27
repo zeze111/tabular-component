@@ -1,0 +1,24 @@
+.titles-container {
+  flex-direction: row;
+  display: flex;
+  border-bottom: 1px solid grey;
+}
+
+.tab-title {
+  border: 1px solid grey;
+  border-radius: 2px;
+  padding: 6px;
+  margin: 0px 6px;
+  cursor: pointer;
+  margin-bottom: -1px;
+}
+
+.tab-title-active {
+  background-color: white;
+  border: solid #ccc;
+  border-width: 1px 1px 0 1px;
+}
+
+.tab-pane {
+  margin: 20px;
+}
