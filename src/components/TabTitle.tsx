@@ -1,6 +1,6 @@
 import "../assets/css/tab.css";
 
-export type TabTitleProps = {
+type TabTitleProps = {
   title: string;
   index: number;
   setActiveTab: (index: number) => void;
@@ -14,7 +14,7 @@ const TabTitle: React.FC<TabTitleProps> = ({
   setActiveTab,
   activeTab,
   index,
-  styles,
+  styles = "",
   onActiveChange,
 }) => {
   let className = `tab-title ${styles}`;
@@ -24,9 +24,10 @@ const TabTitle: React.FC<TabTitleProps> = ({
   }
   return (
     <div
+      data-testid="tab-title"
       className={className}
       onClick={() => {
-        setActiveTab(index)
+        setActiveTab(index);
         onActiveChange?.();
       }}
     >

@@ -2,6 +2,39 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### Deployed App
+This app has been deployed on Heroku, follow this [link](https://tabular-components.herokuapp.com/)
+to view the app.
+
+## Bonus Task 2
+
+While it is possible to use tail recursive evaluation for conditional types with typescript,
+I believe it's techincally complicated to set out-of-bounds type in this case.
+
+On the one hand we can use tail recursive evaluation to hardcode a limit for the
+out-of-bound value like below
+
+```
+type Range<T extends number, R extends unknown[]> = R["length"] extends T
+  ? R[number]
+  : Range<T, [R["length"], ...R]>;
+
+type tabRange<T extends number> = number extends T ? number : Range<T, []>;
+
+interface ControlledTabProps extends TabInitialProps {
+  active: tabRange<4>;
+}
+```
+
+and this will result in this type error when called as so
+[Bonus 2 Task Sample](/src/assets/images/bonus-task-2-sample.png)
+
+But this is ineffective because if more than 4 `Tab.Pane` components are rendered,
+the user will not be able to access the 5th tab. And because we can't pass props to
+type|interface, we cannot set the limit to `children.length` which will solve for the number of `Tab.Pane` that was rendered. This in turn makes it not
+feasible to set the type out-of-bounds restriction.
+
+
 ## Available Scripts
 
 In the project directory, you can run:

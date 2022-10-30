@@ -5,22 +5,22 @@ import TabTitle from "./TabTitle";
 
 const Tab: TabComponent = ({
   children,
-  styles,
+  styles = "",
   initialActive,
   active,
   onActiveChange,
 }) => {
   const tabRef = useRef(initialActive);
 
-  // sets the default value to be used with state value
+  // sets the default value to be used by the state
   const defaultActiveValue =
     useMemo(() => {
-      if (initialActive) {
+      if (initialActive && initialActive < children.length) {
         return tabRef.current;
-      } else if (active) {
+      } else if (active && active < children.length) {
         return active;
       }
-    }, [active, initialActive]) || 0;
+    }, [active, children.length, initialActive]) || 0;
 
   const [activeTab, setActiveTab] = useState(defaultActiveValue);
 
@@ -31,7 +31,7 @@ const Tab: TabComponent = ({
   );
 
   return (
-    <div className={styles}>
+    <div data-testid="tab" className={styles}>
       <div className="titles-container">
         {children.map((item, index) => (
           <TabTitle
@@ -45,7 +45,7 @@ const Tab: TabComponent = ({
         ))}
       </div>
       {Children.map(children, (el) => {
-        // passes a selected prop to each child jsx element of the children prop
+        // passes a `selected` prop to each child jsx element of the children prop
         return cloneElement(el, {
           selected: activeTabTitle === el.props.title,
         });
