@@ -2,11 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Challenge Solutions
+
 ### Deployed App
 This app has been deployed on Heroku, follow this [link](https://tabular-components.herokuapp.com/)
 to view the app.
 
-## Bonus Task 2
+### Bonus Task 2
 
 While it is possible to use tail recursive evaluation for conditional types with typescript,
 I believe it's techincally complicated to set out-of-bounds type in this case.
@@ -33,6 +35,9 @@ But this is ineffective because if more than 4 `Tab.Pane` components are rendere
 the user will not be able to access the 5th tab. And because we can't pass props to
 type|interface, we cannot set the limit to `children.length` which will solve for the number of `Tab.Pane` that was rendered. This in turn makes it not
 feasible to set the type out-of-bounds restriction.
+
+### Bonus Task 4
+Npm package can be found at this link [tabular-component-osaze](https://www.npmjs.com/package/tabular-component-osaze)
 
 
 ## Available Scripts

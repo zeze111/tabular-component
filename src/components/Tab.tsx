@@ -24,7 +24,7 @@ const Tab: TabComponent = ({
 
   const [activeTab, setActiveTab] = useState(defaultActiveValue);
 
-  // return the string value of the current tab title
+  // returns the string value of the current tab title
   const activeTabTitle = useMemo(
     () => children[activeTab].props.title,
     [activeTab, children]
