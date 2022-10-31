@@ -55,7 +55,7 @@ const Tab: TabComponent = ({
 };
 
 const TabPane: React.FC<TabPaneProps> = ({ children, selected }) => {
-  return <div className="tab-pane">{selected ? children : null}</div>;
+  return selected ? <div className="tab-pane">{children}</div> : null;
 };
 
 Tab.Pane = TabPane;

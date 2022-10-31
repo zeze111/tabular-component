@@ -31,8 +31,8 @@ interface ControlledTabProps extends TabInitialProps {
 and this will result in this type error when called as so
 [Bonus 2 Task Sample](/src/assets/images/bonus-task-2-sample.png)
 
-But this is ineffective because if more than 4 `Tab.Pane` components are rendered,
-the user will not be able to access the 5th tab. And because we can't pass props to
+But this is ineffective because if more than 5 `Tab.Pane` components are rendered,
+the user will not be able to access the 6th tab. And because we can't pass props to
 type|interface, we cannot set the limit to `children.length` which will solve for the number of `Tab.Pane` that was rendered. This in turn makes it not
 feasible to set the type out-of-bounds restriction.
 
