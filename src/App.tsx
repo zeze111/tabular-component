@@ -1,6 +1,6 @@
 import Tab from "./components/Tab";
 
-// renders the tab component the according to usage
+// renders the tab component according to usage
 function App() {
   return (
     <Tab initialActive={2}>
